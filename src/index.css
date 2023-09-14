@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+Teal - #10A19D, rgb(16, 161, 157)
+Purple - #540375, rgb(84, 3, 117)
+Orange - #FF7000, rgb(255, 112, 0)
+Yellow - #FFBF00, rgb(255, 191, 0)
+
+Blue - #2192FF, rgb(33, 146, 255)
+Green - #38E54D, rgb(56, 229, 77)
+Green - #9CFF2E, rgb(156, 255, 46)
+Yellow - #FDFF00, rgb(253, 255, 0)
+
+Teal - #22A699, rgb(34, 166, 153)
+Yellow - #F2BE22, rgb(242, 190, 34)
+Orange - #F29727, rgb(242, 151, 39)
+Red - #F24C3D, rgb(242, 76, 61)
+*/
+
+:root {
+  --teal: #10A19D;
+  --purple: #540375;
+  --orange: #FF7000;
+  --yellow: #FFBF00;
+  --orange-rgb: 242, 151, 39;
+
+  --sup-duration: 0.5s;
+  --sup-delay: 0.5s;
+  --sup-items: 4;
+
+  /* font-family: var(--font-lilita-one) 'Lilita One', cursive, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  background-color: var(--yellow);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1em;
+  font-size: 1.5em;
+  font-weight: 500;
+  font-family: inherit;
+  /* background-color: #1a1a1a; */
+  background-color: var(--purple);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  /* border: 3px solid var(--purple); */
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+} */
+
+/* @keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* @media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+} */
+
+.countdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  animation: .25s linear calc( var(--sup-duration) + (var(--sup-duration) * (var(--sup-items) - 1) + var(--sup-delay) )) forwards hideIt;
+  /* Duration + delay; duration * (items -1)  + delay */
+  backdrop-filter: blur(15px);
+  background-color: rgba(255, 255, 255, .45);
+}
+
+.countdown.go {
+  display: flex;
+}
+
+
+.countdown span {
+  position: absolute;
+  opacity: 0;
+  line-height: 1;
+  color: var(--purple);
+}
+
+
+
+.go .countdown-3 {
+  animation: var(--sup-duration) ease-out 0.5s scaleUp;
+}
+.go .countdown-2 {
+  animation: var(--sup-duration) ease-in-out calc(var(--sup-duration) * 1 + var(--sup-delay)) scaleUp;
+}
+.go .countdown-1 {
+  animation: var(--sup-duration) ease-in-out calc(var(--sup-duration) * 2 + var(--sup-delay)) scaleUp;
+}
+.go .countdown-go {
+  /* dur 1s, del: 3 + 0.5 */
+  animation: var(--sup-duration) ease-in-out calc(var(--sup-duration) * 3 + var(--sup-delay)) scaleUp;
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(40);
+  }
+}
+
+@keyframes hideIt {
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* input.answer {
+  border: 5px dashed white;
+} */
+input.answer:focus-visible {
+  outline: none;
+}
+
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  color: white;
+
+  border-radius: 10px;
+  background: rgba(var(--orange-rgb), .75);
+  border: 3px solid var(--purple);
+  width: 250px
+}
+
+input[type="number"] {
+  border: 5px dashed white;
+  width: 300px;
+}
+
+
+
+button.go {
+  position: absolute;
+  right: 0;
+  bottom: -80px;
+}
+
+/* .button-score {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  border-radius: 100%;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+} */
+
+img.bella {
+  border-radius: 100%;
+  border: 5px solid var(--yellow);
+  object-fit: cover;
+  width: 75px;
+  height: 75px;
+  
+}
+img.bella.active {
+  animation: 2s ease-in-out bella;
+}
+
+
+@keyframes bella {
+  50% {
+    border-color: var(--orange);
+    transform: scale(200%) translate(-150px, 150px) rotate(720deg);
+  }
+  100% {
+    transform: scale(100%) translate(0, 0) rotate(0deg);
+  }
+}
+
+img.bella-lg {
+    border: 10px solid var(--orange);
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
+  /* border: 5px solid var(--yellow); */
+  object-fit: cover;
+  margin-bottom: 50px;
+}
+
+.strap svg {
+  width: 500px;
+  position: absolute;
+  left: 50%;
+  top: -80px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+svg text {
+  fill: var(--orange);
+}
+
+/* run for 1s, wait 3s until next run */
+.user {
+  animation: 4s ease-in-out user infinite;
+}
+
+@keyframes user {
+  6.25% {
+    transform: rotate(67.5deg);
+  }
+  18.75% {
+    transform: rotate(-67.5deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+}
+
+.slide-in-bounce {
+  animation: slide-in .6s cubic-bezier(.36,1.01,.32,1.27); 
+  /* animation: slide-in .6s cubic-bezier(0.68, -0.55, 0.25, 1.35) */
+
+  /* animation: slide-in .8s cubic-bezier(0.175, 0.885, 0.32, 1.575);  */
+  /* //cubic-bezier(0.175, 0.885, 0.32, 1.575); */
+  /* cubic-bezier(.36,1.01,.32,1.27) */
+  /* animation: slide-in .75s cubic-bezier(0.6, -0.28, 0.735, 0.045) */
+  /* animation: slide-in .75s cubic-bezier(0.23, 1, 0.320, 1) */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
